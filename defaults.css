@@ -1,0 +1,24 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-size: inherit;
+}
+
+button, input {
+	font-family: inherit;
+	font-weight: inherit;
+}
+
+button, input, label[for] {
+	cursor: pointer;
+}
+
+input + label {
+	padding-left: 0.5rem;
+}
+
+li, img {
+	display: block;
+}

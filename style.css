@@ -1,0 +1,49 @@
+html {
+	background-color: black;
+	color: white;
+}
+
+html, button {
+	font-family: Calibri, sans-serif;
+}
+
+button, .correct, .incorrect, .info, .score {
+	color: white;
+	background-color: hsl(220, 100%, 50%);
+	background-image: -webkit-linear-gradient( top, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.5) 100% );
+	background-image: -moz-linear-gradient( top, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.5) 100% );
+	background-image: -ms-linear-gradient( top, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.5) 100% );
+	background-image: -o-linear-gradient( top, hsla(0, 0%, 0%, 0) 0%, hsla(0, 0%, 0%, 0.5) 100% );
+	border: 1px solid hsl(220, 50%, 50%);
+	border-radius: 0.25em;
+	text-shadow: 1px 1px 1px black;
+}
+
+button:not(.correct):not(.incorrect):not(:disabled):hover {
+	background-color: hsl(220, 100%, 45%);
+}
+
+button[disabled] {
+	background-color: hsl(0, 0%, 25%);
+	border-color: hsl(0, 0%, 25%);
+	color: hsl(0, 0%, 50%);
+	cursor: auto;
+}
+
+.info {
+	background-color: hsl(0, 0%, 25%);
+	border-color: hsl(0, 0%, 25%);
+	cursor: auto;
+}
+
+.correct, button.correct, .score.good {
+	background-color: hsl(100, 100%, 50%);
+	border-color: hsl(100, 100%, 50%);
+	color: white;
+}
+
+.incorrect, button.incorrect, .score.bad {
+	background-color: hsl(0, 100%, 50%);
+	border-color: hsl(0, 100%, 50%);
+	color: white;
+}

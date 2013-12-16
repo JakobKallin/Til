@@ -1,0 +1,97 @@
+html {
+	padding: 2.5%;
+	text-align: center;
+	font-weight: bold;
+}
+
+body {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 32em;
+}
+
+button {
+	display: block;
+	width: 100%; /* This seems to be needed because of some default button styling. */
+}
+
+button, .correct, .incorrect, .info, .score {
+	padding: 0.5em;
+}
+
+.info {
+	float: left;
+}
+	
+	.info > * {
+		display: inline;
+	}
+	
+	.info .question-number:before {
+		content: "Frage ";
+	}
+	
+	.info .question-count:before {
+		content: "von ";
+	}
+
+.prompt {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+	.prompt p { /* Apply to p so margins of .prompt are not affected. */
+		font-size: 1.5em;
+	}
+
+.question .points {
+	overflow: auto;
+	text-align: right;
+}
+
+	.question .points > * {
+		display: inline-block;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	
+	.question .points > * + * {
+		margin-left: 0.5em;
+	}
+
+.options > * + * {
+	margin-top: 0.5em;
+}
+
+.actions {
+	margin-top: 1em;
+}
+
+.result {
+	font-size: 2em;
+}
+
+	.score {
+		display: inline-block;
+	}
+
+		.score > * {
+			display: inline;
+		}
+		
+		.score .max-points:before {
+			content: " / ";
+		}
+	
+	.reward figcaption {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
+	
+	.reward img {
+		width: 100%;
+		max-width: 16rem;
+		height: auto;
+		margin-left: auto;
+		margin-right: auto;
+	}

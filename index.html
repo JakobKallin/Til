@@ -1,0 +1,197 @@
+<!doctype html>
+<html data-ng-app="Quiz">
+	<head>
+		<meta charset="UTF-8">
+		<title>Quiz</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="defaults.css">
+		<link rel="stylesheet" href="style.css">
+		<link rel="stylesheet" href="layout.css">
+		
+		<script>
+			var Quiz = {};
+		</script>
+		<script src="libraries/angular.js"></script>
+		<script src="libraries/angular-touch.js"></script>
+		<script src="source/extensions.js"></script>
+		<script src="source/QuestionController.js"></script>
+		<script>
+			var module = angular.module('Quiz', ['ngTouch']);
+			module.service('quiz', function() {
+				return {
+					"title": "Test Quiz",
+					"rewards": [
+						{
+							"score": 0,
+							"label": "bad",
+							"image": "bad.jpg",
+							"caption": "Du weißt nichts von mir!"
+						},
+						{
+							"score": 3,
+							"label": "okay",
+							"image": "okay.jpg",
+							"caption": "In Ordnung, aber du solltest mehr meiner Filmen sehen!"
+						},
+						{
+							"score": 7,
+							"label": "good",
+							"image": "good.jpg",
+							"caption": "Du bist mein größter Fan!"
+						}
+					],
+					"questions": [
+						{
+							"prompt": "Wo ist Til geboren?",
+							"options": [
+								"Baden-Württemberg",
+								"Bayern",
+								"Hessen",
+								"Rheinland-Pfalz"
+							],
+							"answer": "Baden-Württemberg"
+						},
+						{
+							"prompt": "Was hat Til studiert, außer Schauspielerei?",
+							"options": [
+								"Informatik",
+								"Journalismus",
+								"Jura",
+								"Medizin"
+							],
+							"answer": "Medizin"
+						},
+						{
+							"prompt": "Was war Tils erste Rolle?",
+							"options": [
+								"Die Kommissarin",
+								"Lindenstraße",
+								"Manta, Manta",
+								"Männerpension"
+							],
+							"answer": "Lindenstraße"
+						},
+						{
+							"prompt": "Wie heißt Tils eigenes Filmstudio?",
+							"options": [
+								"Barefoot Films",
+								"Heaven’s Door Films",
+								"Macho Films",
+								"Polar Bear Films"
+							],
+							"answer": "Barefoot Films"
+						},
+						{
+							"prompt": "Welche von diesen ist ein Liebeskomödie?",
+							"options": [
+								"Adrenalin",
+								"Keinohrhasen",
+								"Knockin’ on Heaven’s Door",
+								"Schutzengel"
+							],
+							"answer": "Keinohrhasen"
+						},
+						{
+							"prompt": "Welche von diesen ist ein Actionfilm?",
+							"options": [
+								"1 1/2 Ritter",
+								"Barfuss",
+								"Der Eisbär",
+								"Männerherzen"
+							],
+							"answer": "Der Eisbär"
+						},
+						{
+							"prompt": "In welchem Film spielt Til die Figur „Hugo Stiglitz“?",
+							"options": [
+								"European Gigolo",
+								"Inglourious Basterds",
+								"King Arthur",
+								"Tomb Raider"
+							],
+							"answer": "Inglourious Basterds"
+						},
+						{
+							"prompt": "Welche Rolle will Til niemals spielen?",
+							"options": [
+								"Ein Arschloch",
+								"Ein Gigolo",
+								"Ein Nazi",
+								"Ein Schwede"
+							],
+							"answer": "Ein Nazi"
+						},
+						{
+							"prompt": "Wie heißt Tils jüngste Tochter?",
+							"options": [
+								"Emma Gepard",
+								"Emma Löwe",
+								"Emma Panter",
+								"Emma Tiger"
+							],
+							"answer": "Emma Tiger"
+						},
+						{
+							"prompt": "Welcher deutsche Film ist Tils erfolgreichste?",
+							"options": [
+								"Keinohrhasen",
+								"Knockin’ on Heaven’s Door",
+								"Kokowääh",
+								"Zweiohrküken"
+							],
+							"answer": "Keinohrhasen"
+						}
+					]
+				};
+			});
+		</script>
+	</head>
+	<body data-ng-controller="Quiz.QuestionController">
+		<div class="question" data-ng-show="!state.quizCompleted">
+			<ul class="info">
+				<li class="question-number">{{state.questionNumber}}</li>
+				<li class="question-count">{{quiz.questions.length}}</li>
+			</ul>
+			<ul class="points">
+				<li class="correct">{{state.correct}}</li><!--
+				--><li class="incorrect">{{state.incorrect}}</li>
+			</ul>
+			<div class="prompt">
+				<p>{{state.question.prompt}}</p>
+			</div>
+			<ul class="options">
+				<li data-ng-repeat="option in state.question.options">
+					<button
+						type="button"
+						data-ng-disabled="state.guess"
+						data-ng-click="giveAnswer(option)"
+						data-ng-class="optionClass(option)">{{option}}</button>
+				</li>
+			</ul>
+			<ul class="actions">
+				<li>
+					<button
+						type="button"
+						data-ng-disabled="!state.guess"
+						data-ng-show="!state.allQuestionsAnswered"
+						data-ng-click="proceed()">Weiter</button>
+					<button
+						type="button"
+						data-ng-disabled="!state.allQuestionsAnswered"
+						data-ng-show="state.allQuestionsAnswered"
+						data-ng-click="completeQuiz()">Ergebnis</button>
+				</li>
+			</ul>
+		</div>
+		<div class="result" data-ng-show="state.quizCompleted">
+			<ul class="score" data-ng-class="state.reward.label">
+				<li class="points">{{state.correct}}</li>
+				<li class="max-points">{{quiz.questions.length}}</li>
+			</ul>
+			<figure class="reward">
+				<figcaption>{{state.reward.caption}}</figcaption>
+				<img data-ng-src="{{state.reward.image}}">
+			</figure>
+		</div>
+	</body>
+</html>
