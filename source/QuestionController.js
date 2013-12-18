@@ -5,6 +5,7 @@ Quiz.QuestionController = function($scope, quiz) {
 		guess: null,
 		correct: 0,
 		incorrect: 0,
+		quizStarted: false,
 		quizCompleted: false,
 		get questionNumber() {
 			return quiz.questions.indexOf(this.question) + 1;
@@ -38,6 +39,10 @@ Quiz.QuestionController = function($scope, quiz) {
 		} else if ( option === $scope.state.guess ) {
 			return 'incorrect';
 		}
+	};
+	
+	$scope.startQuiz = function() {
+		$scope.state.quizStarted = true;
 	};
 	
 	$scope.giveAnswer = function(guess) {

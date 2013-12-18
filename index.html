@@ -19,7 +19,8 @@
 			var module = angular.module('Quiz', ['ngTouch']);
 			module.service('quiz', function() {
 				return {
-					"title": "Test Quiz",
+					"title": "Til Schweiger",
+					"subtitle": "und das ganz ganz große Quiz",
 					"rewards": [
 						{
 							"score": 0,
@@ -28,13 +29,13 @@
 							"caption": "Du weißt nichts von mir!"
 						},
 						{
-							"score": 3,
+							"score": 4,
 							"label": "okay",
 							"image": "okay.jpg",
-							"caption": "In Ordnung, aber du solltest mehr meiner Filmen sehen!"
+							"caption": "In Ordnung, aber du solltest mehr meiner Filme sehen!"
 						},
 						{
-							"score": 7,
+							"score": 8,
 							"label": "good",
 							"image": "good.jpg",
 							"caption": "Du bist mein größter Fan!"
@@ -147,7 +148,17 @@
 		</script>
 	</head>
 	<body data-ng-controller="Quiz.QuestionController">
-		<div class="question" data-ng-show="!state.quizCompleted">
+		<div class="splash" data-ng-show="!state.quizStarted">
+			<h1>
+				<span class="title">{{quiz.title}}</span>
+				<span class="subtitle">{{quiz.subtitle}}</span>
+			</h1>
+			<figure>
+				<img src="splash.jpg">
+			</figure>
+			<p><button type="button" data-ng-click="startQuiz()">Anfangen</button></p>
+		</div>
+		<div class="question" data-ng-show="state.quizStarted && !state.quizCompleted">
 			<ul class="info">
 				<li class="question-number">{{state.questionNumber}}</li>
 				<li class="question-count">{{quiz.questions.length}}</li>

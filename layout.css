@@ -19,6 +19,37 @@ button, .correct, .incorrect, .info, .score {
 	padding: 0.5em;
 }
 
+.splash {
+	
+}
+
+	.splash h1 .title {
+		display: block;
+		font-size: 3em;
+	}
+	
+	.splash h1 .subtitle {
+		display: block;
+		font-size: 2em;
+	}
+	
+	.splash figure {
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
+	
+	.splash img {
+		width: 100%;
+		max-width: 16rem;
+		height: auto;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	
+	.splash button {
+		font-size: 2em;
+	}
+
 .info {
 	float: left;
 }
